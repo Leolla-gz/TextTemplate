@@ -1,0 +1,4 @@
+[package]
+id=TextTemplate
+name=テキストテンプレ
+information=テキストテンプレ v@VERSION@ by Leolla-gz

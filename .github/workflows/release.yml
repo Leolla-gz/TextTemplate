@@ -1,0 +1,44 @@
+# タグ(v0.3.0 など)を push すると、自動でビルド・テストして GitHub Release に zip を添付する。
+# AviUtl2 カタログは「最新のタグ付きリリース」の zip を取得するので、これで配布が更新される。
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write   # Release の作成に必要
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MinGW-w64 (Windows 向けクロスコンパイラ)
+        run: sudo apt-get update && sudo apt-get install -y g++-mingw-w64-x86-64
+
+      - name: Unit test (保存形式の単体テスト)
+        run: |
+          g++ -std=c++17 -Wall -Wextra -Isrc tests/test_template_store.cpp src/template_store.cpp -o test_store
+          ./test_store
+
+      - name: Build TextTemplate.aux2
+        run: sh build_mingw.sh
+
+      - name: Package
+        run: sh scripts/package.sh "${GITHUB_REF_NAME#v}"
+
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ZIP="release/TextTemplate_${GITHUB_REF_NAME}.au2pkg.zip"
+          # GitHub の画面で「Release 作成と同時にタグ作成」した場合は Release が既にあるので、zip を追加するだけ
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "$ZIP" --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" "$ZIP" \
+              --title "テキストテンプレ $GITHUB_REF_NAME" \
+              --notes-file CHANGELOG.md
+          fi

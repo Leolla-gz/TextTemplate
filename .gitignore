@@ -1,0 +1,5 @@
+build/
+release/
+*.exe
+# ビルド済みファイルはリポジトリに入れず、GitHub Release で配布する
+/TextTemplate.aux2

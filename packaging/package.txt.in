@@ -1,0 +1,9 @@
+テキストテンプレ v@VERSION@
+
+テキストの見た目(フォント・色・文字装飾・縁取り/グラデーション等のフィルタ)を
+テンプレートとして登録し、タイムラインで選択したテキストへ一括適用する汎用プラグインです。
+
+インストール後、AviUtl2 のウィンドウ一覧から「テキストテンプレ」を開いてください。
+テンプレートは Plugin\TextTemplate\templates.ini に保存されます。
+
+License: MIT (同梱の LICENSE.txt / THIRD_PARTY_NOTICES.txt を参照)
