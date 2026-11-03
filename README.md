@@ -27,11 +27,22 @@
 
 ## インストール
 
-1. [Releases](https://github.com/Leolla-gz/TextTemplate/releases) から `TextTemplate_v*.au2pkg.zip` をダウンロード
-2. AviUtl2 を起動し、zip を**プレビュー画面へドラッグ&ドロップ**(`.au2pkg.zip` は AviUtl2 がそのままインストールできる形式)
-3. 求められたら AviUtl2 を再起動
-
+[Releases](https://github.com/Leolla-gz/TextTemplate/releases) から `TextTemplate_v*.au2pkg.zip` をダウンロードし、次のどちらかで導入します。
 AviUtl2 カタログからもインストールできます。
+
+### 方法1: プレビュー画面へドラッグ&ドロップ(簡単)
+
+1. AviUtl2 を起動し、zip を**プレビュー画面へドラッグ&ドロップ**(`.au2pkg.zip` は AviUtl2 がそのままインストールできる形式)
+2. 求められたら AviUtl2 を再起動
+
+### 方法2: プラグインフォルダへ手動で配置
+
+1. AviUtl2 を終了する
+2. zip を展開し、中の `Plugin\TextTemplate` フォルダ(`TextTemplate.aux2` を含む)を、AviUtl2 の **Plugin フォルダ**へフォルダごとコピー
+   - 例(インストーラー版の既定): `C:\ProgramData\aviutl2\Plugin\TextTemplate\TextTemplate.aux2` となるように置く
+   - `TextTemplate.aux2` だけを Plugin フォルダ直下に置いても動作します
+   - Plugin フォルダの場所は AviUtl2 の導入方法(インストーラー版 / ポータブル版)によって異なります
+3. AviUtl2 を起動する
 
 アンインストールはプラグインフォルダの `TextTemplate\TextTemplate.aux2` を削除してください。
 
